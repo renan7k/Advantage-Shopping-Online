@@ -7,4 +7,6 @@ module.exports = defineConfig({
     },
     baseUrl:'https://advantageonlineshopping.com/'
   },
+  viewportWidth: 1366,
+  viewportHeight: 768
 });

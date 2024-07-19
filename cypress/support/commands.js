@@ -38,3 +38,14 @@ Cypress.Commands.add('sendContact', (email, message) =>{
     cy.get('[name=subjectTextareaContactUs]').type(message)
     cy.get('#send_btn').click()
 })
+
+Cypress.Commands.add('addSpeakersToCart', () => {
+    cy.get('#speakersImg').click()
+    cy.wait(4000)
+    cy.contains('h3','SPEAKERS').should('be.visible')
+
+    cy.get('[class="cell categoryRight"]> ul > :nth-child(3)').click()
+    cy.wait(4000)
+    cy.get('[name="save_to_cart"]').click()
+    cy.get('#checkOutPopUp').should('be.visible')
+})
