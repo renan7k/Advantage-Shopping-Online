@@ -27,7 +27,7 @@ describe("Validações da HOME do AdvantageShopping",() => {
         cy.get('#menuHelp').should('be.visible')
         cy.get('#helpLink').should('be.visible')
     })
-    it.only("Verificar estrutura da home ", () => {
+    it("Verificar estrutura da home ", () => {
         //Bloco de Produtos
         cy.get('#our_products').should('be.visible')
         cy.get('#speakersImg').should('be.visible')
@@ -67,12 +67,30 @@ describe("Validações da HOME do AdvantageShopping",() => {
             .should('contain', 'CONTACT US')
             .and('be.visible')
 
-        
-
-
-
         //Bloco de follow us
+        cy.get('footer.ng-scope > :nth-child(1) > h3')
+            .should('be.visible')
+            .and('contain', 'FOLLOW US')
         
+        cy.get('#follow img[name="follow_facebook"]').should('be.visible')
+        cy.get('#follow img[name="follow_facebook"]')
+            .parent()  //buscando pelo elemento pai
+            .should('have.attr','href',' https://www.facebook.com/MicroFocus/')
 
+        cy.get('#follow img[name="follow_twitter"]').should('be.visible')
+        cy.get('#follow img[name="follow_twitter"]')
+            .parent()  //buscando pelo elemento pai
+            .should('have.attr','href','https://twitter.com/MicroFocus')
+
+        cy.get('#follow img[name="follow_linkedin"]').should('be.visible')
+        cy.get('#follow img[name="follow_linkedin"]')
+            .parent()  //buscando pelo elemento pai
+            .should('have.attr','href','https://www.linkedin.com/company/1024?trk=tyah&trkInfo=clickedVertical%3Ashowcase%2CclickedEntityId%3A1024%2Cidx%3A2-1-2%2CtarId%3A145431482.327%2Ctas%3Ahewlett%20packard%20enterprise%20software')    
+    })
+    it("Verificar exibição do botão Voltar ao Topo", () => {
+        cy.get('#scrollToTop').should('not.be.visible')
+        cy.scrollTo('bottom')
+
+        cy.get('#scrollToTop').should('be.visible')
     })
 })
