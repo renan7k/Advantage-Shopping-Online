@@ -3,14 +3,14 @@ Este repositório contém os testes automatizados em cypress, contemplando parte
 
 <h2>Setup</h2>
 <h3>Pré-requisitos</h3>
-* Node.js instalado
-> Utilizei a versão `v20.11.1`.
-* IDE instalada (utilizei o Visual Studio Code)
+* Node.js instalado (Utilizei a versão v20.11.1 )<br/>
+* IDE instalada (utilizei o Visual Studio Code)<br/>
+
 <h3>Instalação</h3>
-* Instalar as dependências configuradas do package.json, usando o comando: npm install
+* Instalar as dependências configuradas do package.json, usando o comando: 	"npm install"<br/>
 
 <h3>Execução dos testes</h3>
-* `npm run cy:open` ou `npx cypress open` para execução dos testes no modo iterativo
-* `npm run cy:run` ou `npx cypress run` para execução dos testes no modo headless.
+* "npm run cy:open" ou "npx cypress open" para execução dos testes no modo iterativo<br/>
+* "npm run cy:run" ou "npx cypress run" para execução dos testes no modo headless<br/>
 
 <h2>Conhecimentos aplicados</h2>
