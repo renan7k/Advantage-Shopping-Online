@@ -17,7 +17,7 @@ describe("Funcionalidades do carrinho", () => {
         cy.get('#orderPaymentSuccess > .roboto-regular.ng-binding').should('be.visible').and('contain',' Your tracking number is ')
         cy.get('#orderPaymentSuccess > .roboto-regular.ng-binding').should('be.visible').and('contain',' Your order number is ')
     })
-    it("Limpar carrinho", () => {
+    it("Verificar mensagem quando o único produto for removido do carrinho", () => {
         cy.addSpeakersToCart()
         cy.get('#shoppingCartLink').click()
         cy.get('.actions')
