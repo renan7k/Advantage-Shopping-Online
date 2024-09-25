@@ -58,7 +58,7 @@ describe("Fale conosco", () => {
                 .should('be.visible')
                 .and('be.disabled')
         })
-        it('Validar necessidade de @ e . no campo email', () => {
+        it('Validar obrigatoriedade de @ e . no campo email', () => {
             cy.get('[name=emailContactUs]').type('abnergmail.com')
             cy.get('[name=subjectTextareaContactUs]').type('O notebook chegou com a tela trincada')
             cy.get('#send_btn').click()
