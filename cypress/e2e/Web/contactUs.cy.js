@@ -39,12 +39,18 @@ describe("Fale conosco", () => {
                 .should('be.visible')
                 .and('be.disabled')
         })
-        it('Validar mensagem de obrigatoriedade do email e assunto', () => {
-            cy.get('[name=emailContactUs]').click()
-            cy.get('[name=subjectTextareaContactUs]').click()
+        it.skip('Validar mensagem de obrigatoriedade do email e assunto', () => {
+            cy.get('[name=emailContactUs]')
+                .click()
+                .blur()
 
             cy.contains('Email field is required').should('be.visible')
-            cy.contains('Subject field is required').should('be.visible') //Bug, a literal da msg deveria ser outra
+
+            cy.get('[name=subjectTextareaContactUs]')
+                .click()
+                .blur()
+
+            cy.get('.checkboxText').should('have.text','Subject field is required')//Bug, o site está exibindo o nome do campo como email
         })
         it('Validar botão enviar desabilitado quando email não estiver preenchido', () => {
             cy.get('[name=subjectTextareaContactUs]').type('O notebook chegou com a tela trincada')

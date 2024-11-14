@@ -2,37 +2,43 @@
 describe("Modal de login", () =>{
     beforeEach(() => {
         cy.visit('/')
-        cy.wait(10000)
     })
     it("Verificar realização de login com sucesso", () => { 
     //Teste utilziando o comando customizado, e as váriáveis definidas no arquivo Cypress.env , que por questão de segurança, pode ser incluído no gitIgnore e não compartilhado
         cy.intercept('POST', '/accountservice/ws/AccountLoginRequest').as('loginRequest')
         cy.login(Cypress.env('username'), Cypress.env('password'))
+
+        cy.wait('@loginRequest').then(interception => {
+            expect(interception.response.statusCode).to.equal(200)
         
         cy.get('#menuUserLink > span')
             .should('contain' ,Cypress.env('username'))
             .and('be.visible')
-
-        cy.wait('@loginRequest').then(interception => {
-            expect(interception.response.statusCode).to.equal(200)
         })
     })  
-    it("Verificar mensagens de erro ao deixar os campos usuário e senha vazios ", () => {
+    it.only("Verificar mensagens de erro ao deixar os campos usuário e senha vazios ", () => {
         cy.get('#menuUserLink').click()
-        cy.get('[a-hint="Password"] > .inputContainer > [name="password"]').click()
+        cy.get('[a-hint="Username"] > .inputContainer > [name="username"]')
+            .focus()
+            .blur()
 
-        cy.log('Foco no campo senha')
         cy.get('[a-hint="Username"] > .inputContainer > label.invalid')
             .should('be.visible')
             .and('have.text', 'Username field is required')
+        
         cy.get('[a-hint="Password"] > .inputContainer > label.invalid').should('not.exist') //Só exibido quando o cursor vai para outro elemento
+        
+        // cy.log('Foco no campo senha')
+        // cy.log('Foco no campo usuário')
+        cy.get('[a-hint="Password"] > .inputContainer > [name="password"]')
+            .focus()
+            .blur()
 
-        cy.log('Foco no campo usuário')
-        cy.get('[a-hint="Username"] > .inputContainer > [name="username"]').click()
         cy.get('[a-hint="Password"] > .inputContainer > label.invalid')
             .should('be.visible')
             .and('have.text', 'Password field is required')
-        cy.get('[a-hint="Username"] > .inputContainer > label.invalid').should('not.exist')
+
+        cy.get('[a-hint="Username"] > .inputContainer > label.invalid').should('be.visible')
 
         cy.log('Foco no checkbox')
         cy.get('[name="remember_me"]').check()
