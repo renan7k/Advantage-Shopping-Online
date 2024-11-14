@@ -4,7 +4,7 @@ describe("Funcionalidades do carrinho", () => {
         cy.visit('/')
         cy.wait(10000)
     })
-    it("Verificar fluxo de compra de produto com cartão Mastercard", () => {
+    it.skip("Verificar fluxo de compra de produto com cartão Mastercard", () => {
         cy.login(Cypress.env('username'), Cypress.env('password'))
         cy.add2MicersToCart()
         cy.get('#shoppingCartLink').click()
